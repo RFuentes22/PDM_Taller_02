@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- TODO (7.1) Defenicion del contenido principal de la actividad -->
-<!-- TODO (7.2)  layout_behavior Define que el contenido tenga scroll con respecto a la barra-->
+<!-- TODO (7.1.1) Defenicion del contenido principal de la actividad  en version horizontal-->
 <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -9,12 +8,21 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:showIn="@layout/app_bar_main"
+        android:orientation="horizontal"
         tools:context=".MainActivity">
-    <!-- TODO (7.3) Note que se define solamente el recyclerview -->
+
+    <!-- TODO (7.3.1) Note que se define  el recyclerview  y el panel para poner un fragmento-->
     <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerview"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/list_width"
             android:layout_height="wrap_content"
             android:text="Hello World!" />
+
+    <FrameLayout
+        android:id="@+id/fragment_content"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:background="@color/colorAccent"></FrameLayout>
 
 </LinearLayout>
