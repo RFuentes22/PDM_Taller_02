@@ -1,4 +1,4 @@
-package com.example.taller_02
+package com.naldana.taller_02
 
 import org.junit.Test
 
