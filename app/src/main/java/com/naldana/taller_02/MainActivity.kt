@@ -1,27 +1,37 @@
 package com.naldana.taller_02
 
+import android.os.AsyncTask
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.Menu
 import android.view.MenuItem
+import com.naldana.taller_02.models.Coin
+import com.naldana.taller_02.utilities.NetworkUtils
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*
+import org.json.JSONObject
+import java.io.IOException
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     var twoPane =  false
+    private var coinList: ArrayList<Coin> = ArrayList()
+    private lateinit var viewAdapter: CoinAdapter
+    private lateinit var viewManager: RecyclerView.LayoutManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         // TODO (9) Se asigna a la actividad la barra personalizada
         setSupportActionBar(toolbar)
-
+        initRecycler()
 
         // TODO (10) Click Listener para el boton flotante
         fab.setOnClickListener { view ->
@@ -122,4 +132,24 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         drawer_layout.closeDrawer(GravityCompat.START)
         return true
     }
+
+
+    fun initRecycler() {
+
+        var coin: MutableList<Coin> = MutableList(100) { i ->
+            Coin("Name" +i,"country" + i,"value_us" + i, "year" + i , "isAvailableimg" +i,"img" + i)
+        }
+
+        viewManager = LinearLayoutManager(this)
+
+        viewAdapter = CoinAdapter(coin)
+
+        recyclerview.apply {
+            setHasFixedSize(true)
+            layoutManager = viewManager
+            adapter = viewAdapter
+        }
+
+    }
+
 }
