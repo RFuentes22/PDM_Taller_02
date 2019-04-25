@@ -18,15 +18,8 @@ class CoinAdapter(val items: List<Coin>) : RecyclerView.Adapter<CoinAdapter.View
     private var countViews: Int = 0
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.list_item_coin, parent, false)
-        /*
-         * TODO: Muestra el valor de contador de view creadas solo se hace aqui, para asegurar
-         * que solo se asigne el valor aqui
-         */
 
-        countViews++
-        FetchCoinTask().execute()
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.app_bar_main, parent, false)
         return ViewHolder(view)
     }
 
@@ -42,7 +35,7 @@ class CoinAdapter(val items: List<Coin>) : RecyclerView.Adapter<CoinAdapter.View
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun bind(item: Coin) = with(itemView) {
-          tv_name_country.text = item.name
+
 
         }
     }
